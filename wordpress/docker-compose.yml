@@ -1,0 +1,80 @@
+services:
+  db:
+    image: mariadb:11.4.5
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - wp_lab_db_data:/var/lib/mysql
+    networks:
+      - wp_lab_net
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:6.8.2-php8.2-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${WP_PORT:-8001}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-0}
+    volumes:
+      - wp_lab_core:/var/www/html
+      - ./themes/ai-hub-theme:/var/www/html/wp-content/themes/ai-hub-theme
+      - ./mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./scripts:/var/www/html/wp-content/scripts
+    networks:
+      - wp_lab_net
+
+  wpcli:
+    image: wordpress:cli-2.11.0-php8.2
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - wp_lab_core:/var/www/html
+      - ./themes/ai-hub-theme:/var/www/html/wp-content/themes/ai-hub-theme
+      - ./mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./scripts:/var/www/html/wp-content/scripts
+    networks:
+      - wp_lab_net
+    profiles:
+      - cli
+
+  mailpit:
+    image: axllent/mailpit:v1.22.3
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MAILPIT_UI_PORT:-8025}:8025"
+    networks:
+      - wp_lab_net
+
+volumes:
+  wp_lab_db_data:
+  wp_lab_core:
+
+networks:
+  wp_lab_net:
+    driver: bridge
