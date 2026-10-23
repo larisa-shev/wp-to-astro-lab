@@ -1,40 +1,58 @@
-# Архітектура та план експерименту міграції WordPress → Astro
+# Architecture & Migration Plan: WordPress (ACF Free) to Astro
 
-## 1. Мета проєкту
-Цей репозиторій (`wp-to-astro-lab`) створено для практичного вивчення міграції сучасних корпоративних сторінок із **WordPress** (побудованих на базі **Advanced Custom Fields (ACF Free)**, **Contact Form 7** та інтерактивних бібліотек на кшталт **Swiper**) на статичну та острівну архітектуру **Astro**.
+## 1. Purpose of the Laboratory
+`wp-to-astro-lab` is an isolated engineering environment built to model a realistic corporate website migration from **WordPress** to **Astro**. Rather than migrating a trivial blog post, this project models a rich B2B engineering landing page (**NovaTech Solutions**) featuring:
+- Structured content management via **Advanced Custom Fields (ACF Free 6.4.3)**.
+- Classic PHP page templating inside a child theme (`ai-hub-theme`) of the **Twenty Twenty-Five** block theme.
+- Two independent **Swiper v11** carousels (a multi-column responsive Case Studies slider and a single-slide Testimonials slider with autoplay controls and `prefers-reduced-motion` support).
+- Two distinct accessible accordion patterns (a multi-expand Delivery Process accordion and a single-expand Technical FAQ accordion).
+- Server-validated **Contact Form 7** integration with local SMTP delivery to **Mailpit**.
 
-## 2. Ізоляція та безпека середовища
-Під час первинного аудиту старого тестового проєкту (`ai-hub`) було виявлено типові ризики безпеки при роботі з WordPress у Git:
-- Зберігання `wp-config.php` із захардкодженими криптографічними солями та секретним ключем `JWT_AUTH_SECRET_KEY`.
-- Зберігання клієнтських скриптів із реальним JWT Bearer-токеном авторизації.
-- Відсутність правил у `.gitignore` для ядра WordPress (`wp-admin/`, `wp-includes/`) та сторонніх плагінів.
+---
 
-У новому репозиторії **`wp-to-astro-lab`** застосовано такі архітектурні рішення:
-1. **Повна ізоляція від старого проєкту:** новий стек працює на порту `127.0.0.1:8001` у власній Docker-мережі `wp_lab_net` із окремими іменованими томами (`wp_lab_db_data`, `wp_lab_core`).
-2. **Фіксація версій образів:**
-   - `wordpress:6.8.2-php8.2-apache`
-   - `mariadb:11.4.5` (LTS-реліз замість застарілого MySQL 5.7)
-   - `wordpress:cli-2.11.0-php8.2`
-   - `axllent/mailpit:v1.22.3`
-3. **Безпечне локальне тестування пошти (Mailpit):**
-   - SMTP-порт `1025` не публікується на хост-машині і доступний виключно всередині Docker-мережі `wp_lab_net` для контейнера `wordpress`.
-   - Веб-інтерфейс перегляду листів прив'язаний лише до `127.0.0.1:8025`.
-   - Жодні персональні дані чи листи з Contact Form 7 не записуються у відкриті файли `wp-content/uploads/` і не відправляються на зовнішні поштові сервери.
+## 2. Infrastructure Isolation & Security Boundaries
 
-## 3. Технічні особливості WordPress-стенду (Етап 1)
-1. **Дочірня тема `ai-hub-theme` + Twenty Twenty-Five:**
-   - Використовується класичний PHP-шаблон сторінки `page-novatech.php` із власними модульними частинами `novatech-header.php` та `novatech-footer.php`.
-   - Завдяки пріоритету ієрархії шаблонів WordPress (`locate_block_template`), кастомний PHP-шаблон має вищий пріоритет над загальним блоковим `templates/page.html` батьківської теми.
-2. **ACF Free 6.4.3 та його обмеження:**
-   - Через відсутність `Repeater` у безкоштовній версії ACF повторювані елементи (6 карток послуг, слайди кейсів, відгуки, питання FAQ та етапи роботи) моделюються за допомогою фіксованих вкладених груп (`Group`) із прапорцем `enabled`.
-   - *Обмеження в WP:* контент-менеджер не може довільно збільшити кількість карток понад передбачені слоти без зміни схеми полів.
-   - *Вирішення під час міграції на Astro:* на етапі перенесення в `astro-lab/` фіксовані групи `card_1..card_N` нормалізуються у справжні динамічні масиви (`Array`) у схемах Astro Content Collections / даних компонентів.
-3. **Єдине джерело істини для ACF (`acf-json`):**
-   - Схема полів зберігається у `wordpress/themes/ai-hub-theme/acf-json/` з увімкненим параметром `show_in_rest: 1` і імпортується в БД під час ініціалізації без дублювання викликів `acf_add_local_field_group()` на кожному запиті.
+A security audit of typical local WordPress repositories identified three common anti-patterns that this repository explicitly prevents:
+1. Committing `wp-config.php` with static authentication salts or hardcoded `JWT_AUTH_SECRET_KEY` secrets.
+2. Committing client scripts containing live Bearer tokens.
+3. Tracking WordPress Core (`wp-admin/`, `wp-includes/`), third-party plugins, or user upload directories in Git.
 
-## 4. Етапи проєкту
-- **Етап 0:** Ініціалізація чистого репозиторію `wp-to-astro-lab` та Docker-конфігурації.
-- **Етап 1:** Реалізація еталонної корпоративної сторінки **NovaTech Solutions** у WordPress (ACF Free, Contact Form 7 + Mailpit, Swiper №1 Cases, Swiper №2 Testimonials, FAQ та Process Accordions).
-- **Етап 2:** Ініціалізація `astro-lab/` та перенесення Layout, стилів і статичних секцій.
-- **Етап 3:** Міграція ACF-даних у структури Astro та перенесення інтерактивних компонентів (Swiper, Accordions, заміна CF7).
-- **Етап 4:** Порівняльний аудит продуктивності, доступності та підтримуваності коду.
+### How `wp-to-astro-lab` Enforces Isolation
+- **Dedicated Network & Ports:** WordPress binds strictly to `127.0.0.1:8001` on the `wp_lab_net` bridge network, leaving any existing containers on port `8000` untouched.
+- **Pinned Image Tags:**
+  - `wordpress:6.8.2-php8.2-apache`
+  - `mariadb:11.4.5`
+  - `wordpress:cli-2.11.0-php8.2`
+  - `axllent/mailpit:v1.22.3`
+- **Internal-Only SMTP:** Mailpit's SMTP server (`mailpit:1025`) is never exposed to the host OS; only its inspection UI is bound to `127.0.0.1:8025`. Outbound emails from Contact Form 7 cannot leave the local machine.
+- **Selective Bind Mounts:** Only `./themes/ai-hub-theme`, `./mu-plugins`, and `./scripts` are mounted from the repository into `/var/www/html/wp-content/`.
+
+---
+
+## 3. WordPress & ACF Free Technical Architecture (Stage 1)
+
+### 3.1 Child Theme Compatibility with Twenty Twenty-Five
+`twentytwentyfive` is a Full Site Editing (FSE) block theme that stores HTML templates in `templates/page.html` and omits classic `header.php` / `footer.php` files.
+- In WordPress 6.8.2, assigning a custom PHP template (`_wp_page_template = page-novatech.php`) gives `ai-hub-theme/page-novatech.php` higher specificity in `locate_block_template()` than the parent theme's generic `templates/page.html`.
+- Because `twentytwentyfive` does not provide `header.php` or `footer.php`, `page-novatech.php` renders a complete HTML5 document (`<!DOCTYPE html>`, `wp_head()`, `wp_body_open()`, `wp_footer()`) and includes modular header/footer parts via `get_template_part( 'template-parts/novatech', 'header' )` and `get_template_part( 'template-parts/novatech', 'footer' )`.
+
+### 3.2 Modeling Repeatable Sections in ACF Free (`Group` vs `Repeater`)
+- **Constraint:** ACF Free 6.4.3 does not include the Pro `Repeater` or `Flexible Content` field types.
+- **Solution in WordPress:** Repeatable UI items (5 navigation links, 3 hero stats, 6 service cards, 5 case study slides, 4 testimonials, 4 delivery phases, and 5 FAQ items) are modeled as nested `Group` fields (`card_1..card_6`, `slide_1..slide_5`, etc.) with an `enabled` boolean toggle.
+- **Documented Limitation:** Editors can modify any item or toggle its visibility in WP Admin without touching code, but cannot add a 7th service card or 6th case study slide without adding a new slot to the ACF field group.
+- **Normalization for Astro Migration:** Both the PHP helper `nt_normalize_acf_list()` and the upcoming Astro data loader convert these keyed sub-groups (`card_1..card_N`) into standard, variable-length arrays (`Array<ServiceCard>`, `Array<CaseSlide>`, etc.), removing the fixed-slot limitation in Astro.
+
+### 3.3 Single Source of Truth for ACF Schema
+To avoid duplication between PHP registration, the WordPress database, and `acf-json/`:
+- The field group (`group_novatech_landing`) is imported into the database via `acf_import_field_group()` inside the idempotent `seed-novatech.php` script (matching any existing post ID by group key).
+- ACF's native `ACF_Local_JSON` listener automatically writes and syncs `wordpress/themes/ai-hub-theme/acf-json/group_novatech_landing.json`.
+- `acf_add_local_field_group()` is intentionally **not** called on every request in `functions.php`, ensuring the field group remains editable in **WP Admin → ACF → Field Groups** without duplicate entries.
+
+---
+
+## 4. Phased Migration Roadmap
+
+- **Stage 0 (Completed):** Repository initialization, `.gitignore` hardening, Docker Compose configuration, and private GitHub synchronization.
+- **Stage 1 (Current):** Full implementation and verification of the **NovaTech Solutions** WordPress baseline (`http://localhost:8001/novatech-solutions/`).
+- **Stage 2 (Next):** Initialize `astro-lab/`, extract the ACF REST API payload into typed Astro Content Collections / data schemas, and migrate the layout, responsive CSS, Swiper carousels, accessible accordions, and contact form handling.
+- **Stage 3:** Side-by-side comparison of DOM weight, JavaScript payload, accessibility, and Core Web Vitals between WordPress and Astro.
