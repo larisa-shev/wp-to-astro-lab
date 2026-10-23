@@ -17,7 +17,7 @@ function Invoke-WpCli {
         [string[]]$WpArgs,
         [switch]$IgnoreError
     )
-    & docker compose --profile cli run --rm -T wpcli wp @WpArgs --path=/var/www/html --url=http://localhost:8001
+    & docker compose --profile cli run --rm -T --no-deps wpcli wp @WpArgs --path=/var/www/html --url=http://localhost:8001
     if (-not $IgnoreError -and $LASTEXITCODE -ne 0) {
         throw "WP-CLI command failed with exit code $LASTEXITCODE : wp $($WpArgs -join ' ')"
     }
@@ -56,7 +56,7 @@ try {
     $attempt = 0
     while ($attempt -lt $maxAttempts) {
         $attempt++
-        & docker compose --profile cli run --rm -T wpcli wp db check --path=/var/www/html
+        & docker compose --profile cli run --rm -T --no-deps wpcli wp db check --path=/var/www/html
         if ($LASTEXITCODE -eq 0) {
             break
         }
@@ -64,7 +64,7 @@ try {
     }
 
     Write-Host "[3/6] Ensuring WordPress Core is installed (en_US)..." -ForegroundColor Cyan
-    & docker compose --profile cli run --rm -T wpcli wp core is-installed --path=/var/www/html --url=http://localhost:8001
+    & docker compose --profile cli run --rm -T --no-deps wpcli wp core is-installed --path=/var/www/html --url=http://localhost:8001
     if ($LASTEXITCODE -ne 0) {
         Invoke-WpCli -WpArgs @(
             "core", "install",

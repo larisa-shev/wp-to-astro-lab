@@ -159,10 +159,10 @@ try {
     # ------------------------------------------------------------------------
     # 5. SEED IDEMPOTENCY CHECK
     # ------------------------------------------------------------------------
-    & docker compose --profile cli run --rm -T wpcli wp eval-file /var/www/html/wp-content/scripts/seed-novatech.php --path=/var/www/html --url=http://localhost:8001 | Out-Null
+    & docker compose --profile cli run --rm -T --no-deps wpcli wp eval-file /var/www/html/wp-content/scripts/seed-novatech.php --path=/var/www/html --url=http://localhost:8001 | Out-Null
     $pagesAfterSeed = @(Invoke-RestMethod -Uri "$BaseUrl/wp-json/wp/v2/pages?slug=novatech-solutions")
-    $cf7CountRaw = (& docker compose --profile cli run --rm -T wpcli wp post list --post_type=wpcf7_contact_form --format=count --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
-    $acfGroupCountRaw = (& docker compose --profile cli run --rm -T wpcli wp post list --post_type=acf-field-group --format=count --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
+    $cf7CountRaw = (& docker compose --profile cli run --rm -T --no-deps wpcli wp post list --post_type=wpcf7_contact_form --format=count --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
+    $acfGroupCountRaw = (& docker compose --profile cli run --rm -T --no-deps wpcli wp post list --post_type=acf-field-group --format=count --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
 
     Add-TestResult "Seed Idempotency" "No duplicate pages on re-seed" ($(if ($pagesAfterSeed.Count -eq 1) { "PASS" } else { "FAIL" })) "Page count=$($pagesAfterSeed.Count)"
     Add-TestResult "Seed Idempotency" "No duplicate CF7 forms on re-seed" ($(if ($cf7CountRaw -eq "1") { "PASS" } else { "FAIL" })) "CF7 form count=$cf7CountRaw"
@@ -171,7 +171,7 @@ try {
     # ------------------------------------------------------------------------
     # 6. CONTACT FORM 7 VALIDATION & MAILPIT DELIVERY
     # ------------------------------------------------------------------------
-    $cf7Id = (& docker compose --profile cli run --rm -T wpcli wp post list --post_type=wpcf7_contact_form --field=ID --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
+    $cf7Id = (& docker compose --profile cli run --rm -T --no-deps wpcli wp post list --post_type=wpcf7_contact_form --field=ID --path=/var/www/html --url=http://localhost:8001 | Select-Object -Last 1).Trim()
     $cf7Endpoint = "$BaseUrl/wp-json/contact-form-7/v1/contact-forms/$cf7Id/feedback"
     $unitTag = "wpcf7-f$($cf7Id)-p$($pageObj.id)-o1"
 
