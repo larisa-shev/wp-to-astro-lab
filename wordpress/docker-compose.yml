@@ -30,6 +30,7 @@ services:
       WORDPRESS_DB_NAME: ${DB_NAME}
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WP_CLI_CACHE_DIR: /tmp/wp-cli-cache
       WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
       WORDPRESS_DEBUG: ${WP_DEBUG:-0}
     volumes:
@@ -53,6 +54,7 @@ services:
       WORDPRESS_DB_NAME: ${DB_NAME}
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WP_CLI_CACHE_DIR: /tmp/wp-cli-cache
     volumes:
       - wp_lab_core:/var/www/html
       - ./themes/ai-hub-theme:/var/www/html/wp-content/themes/ai-hub-theme
