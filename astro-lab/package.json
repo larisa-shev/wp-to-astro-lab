@@ -1,0 +1,31 @@
+{
+  "name": "novatech-astro-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "check": "astro check",
+    "export:content": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/export-content.mjs",
+    "form:server": "node --env-file-if-exists=.env server/form-server.mjs",
+    "test:unit": "node --test server/form-server.test.mjs",
+    "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.mjs",
+    "test": "npm run test:unit && npm run test:e2e",
+    "compare": "node tests/visual-compare.mjs"
+  },
+  "dependencies": {
+    "astro": "^6.4.8",
+    "swiper": "^12.1.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "playwright-core": "^1.64.1",
+    "typescript": "^6.0.3"
+  }
+}
