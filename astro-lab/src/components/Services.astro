@@ -1,0 +1,45 @@
+---
+import type { NovatechContent } from '../content/schema';
+import { serviceIcons } from './icons';
+
+interface Props {
+  services: NovatechContent['services'];
+}
+const { services } = Astro.props;
+---
+
+<section class="nt-section nt-services" id="services" aria-labelledby="nt-services-heading">
+  <div class="nt-container">
+    <div class="nt-section__header">
+      {services.tag && <p class="nt-section__tag">{services.tag}</p>}
+      {services.title && <h2 id="nt-services-heading" class="nt-section__title">{services.title}</h2>}
+      {services.subtitle && <p class="nt-section__subtitle">{services.subtitle}</p>}
+    </div>
+
+    <div class="nt-services__grid">
+      {
+        services.cards.map((card) => (
+          <article class="nt-service-card">
+            <div class="nt-service-card__top">
+              <span class="nt-service-card__icon" set:html={serviceIcons[card.icon]} />
+              {card.badge && <span class="nt-service-card__badge">{card.badge}</span>}
+            </div>
+
+            <h3 class="nt-service-card__title">{card.title}</h3>
+            {card.description && <p class="nt-service-card__desc">{card.description}</p>}
+            {card.deliverable && <p class="nt-service-card__deliverable">{card.deliverable}</p>}
+
+            {card.link && (
+              <a class="nt-service-card__link" href={card.link.url}>
+                <span>{card.link.text}</span>
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                  <path d="M3.5 8h9m-3.5-3.5L12.5 8 9 11.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

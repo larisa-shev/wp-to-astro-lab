@@ -1,0 +1,71 @@
+---
+import type { NovatechContent } from '../content/schema';
+
+interface Props {
+  process: NovatechContent['process'];
+}
+const { process } = Astro.props;
+---
+
+<section class="nt-section nt-section--alt nt-process" id="process" aria-labelledby="nt-process-heading">
+  <div class="nt-container">
+    <div class="nt-section__header">
+      {process.tag && <p class="nt-section__tag">{process.tag}</p>}
+      {process.title && <h2 id="nt-process-heading" class="nt-section__title">{process.title}</h2>}
+      {process.subtitle && <p class="nt-section__subtitle">{process.subtitle}</p>}
+    </div>
+
+    <div class="nt-accordion nt-process-accordion" id="nt-process-accordion" data-accordion="process" data-allow-multiple={process.allowMultiple ? 'true' : 'false'}>
+      {
+        process.steps.map((step, idx) => {
+          const triggerId = `nt-proc-trigger-${idx + 1}`;
+          const panelId = `nt-proc-panel-${idx + 1}`;
+          return (
+            <div class:list={['nt-accordion__item', { 'is-open': step.defaultOpen }]} data-accordion-item>
+              <h3 class="nt-accordion__heading">
+                <button
+                  type="button"
+                  class="nt-accordion__trigger"
+                  id={triggerId}
+                  aria-expanded={step.defaultOpen ? 'true' : 'false'}
+                  aria-controls={panelId}
+                  data-accordion-trigger
+                >
+                  <span class="nt-process__step-num">{step.number}</span>
+                  <span class="nt-accordion__title-group">
+                    <span class="nt-accordion__title">{step.title}</span>
+                    {step.duration && <span class="nt-process__duration">{step.duration}</span>}
+                  </span>
+                  <span class="nt-accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" focusable="false">
+                      <path d="M5 7.5 10 12.5 15 7.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div id={panelId} class="nt-accordion__panel" role="region" aria-labelledby={triggerId} hidden={!step.defaultOpen} data-accordion-panel>
+                <div class="nt-accordion__panel-inner">
+                  {step.summary && <p class="nt-process__summary">{step.summary}</p>}
+
+                  {step.deliverables.length > 0 && (
+                    <div class="nt-process__deliverables-box">
+                      <h4 class="nt-process__subhead">Concrete Phase Deliverables:</h4>
+                      <ul class="nt-process__deliverables-list">
+                        {step.deliverables.map((d) => (
+                          <li>{d}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {step.governanceNote && <p class="nt-process__gate">{step.governanceNote}</p>}
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

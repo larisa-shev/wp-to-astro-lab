@@ -1,0 +1,95 @@
+---
+import type { NovatechContent } from '../content/schema';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  header: NovatechContent['header'];
+}
+const { header } = Astro.props;
+const brandLabel = `${header.logoText} ${header.logoBadge ?? ''}`.trim();
+const ctaUrl = header.cta?.url ?? '#contact';
+---
+
+<a class="nt-skip-link" href="#main-content">Skip to main content</a>
+
+{
+  header.announcement && (
+    <div class="nt-topbar" role="region" aria-label="Environment status announcement">
+      <div class="nt-container nt-topbar__inner">
+        <span class="nt-topbar__dot" aria-hidden="true" />
+        <p class="nt-topbar__text">{header.announcement}</p>
+      </div>
+    </div>
+  )
+}
+
+<header class="nt-header" id="site-header" data-sticky-header>
+  <div class="nt-container nt-header__inner">
+    <BrandMark logoText={header.logoText} logoBadge={header.logoBadge} ariaLabel={`${brandLabel} home`} />
+
+    <nav class="nt-nav" aria-label="Primary navigation">
+      <ul class="nt-nav__list">
+        {
+          header.nav.map((item) => (
+            <li class="nt-nav__item">
+              <a class="nt-nav__link" href={item.url}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="nt-header__actions">
+      {
+        header.cta && (
+          <a class="nt-btn nt-btn--primary nt-btn--sm nt-header__cta" href={ctaUrl}>
+            {header.cta.text}
+          </a>
+        )
+      }
+
+      <button
+        type="button"
+        class="nt-mobile-toggle"
+        id="nt-mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="nt-mobile-menu-drawer"
+        aria-label="Open navigation menu"
+        data-mobile-toggle
+      >
+        <span class="nt-mobile-toggle__bar" aria-hidden="true"></span>
+        <span class="nt-mobile-toggle__bar" aria-hidden="true"></span>
+        <span class="nt-mobile-toggle__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nt-mobile-drawer" id="nt-mobile-menu-drawer" aria-label="Mobile navigation" hidden data-mobile-drawer>
+    <div class="nt-container nt-mobile-drawer__inner">
+      <nav aria-label="Mobile section navigation">
+        <ul class="nt-mobile-drawer__list">
+          {
+            header.nav.map((item) => (
+              <li class="nt-mobile-drawer__item">
+                <a class="nt-mobile-drawer__link" href={item.url} data-mobile-link>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      {
+        header.cta && (
+          <div class="nt-mobile-drawer__footer">
+            <a class="nt-btn nt-btn--primary nt-btn--full" href={ctaUrl} data-mobile-link>
+              {header.cta.text}
+            </a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</header>

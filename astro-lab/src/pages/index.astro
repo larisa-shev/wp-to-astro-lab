@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Cases from '../components/Cases.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import { content } from '../content';
+---
+
+<BaseLayout title={content.meta.pageTitle} lang={content.meta.lang}>
+  <SiteHeader header={content.header} />
+
+  <main id="main-content" class="nt-main">
+    <Hero hero={content.hero} />
+    <Services services={content.services} />
+    <Cases cases={content.cases} />
+    <Testimonials testimonials={content.testimonials} />
+    <Process process={content.process} />
+    <Faq faq={content.faq} />
+    <Contact contact={content.contact} />
+  </main>
+
+  <SiteFooter header={content.header} contact={content.contact} footer={content.footer} />
+
+  <script>
+    import '../scripts/ui';
+  </script>
+</BaseLayout>

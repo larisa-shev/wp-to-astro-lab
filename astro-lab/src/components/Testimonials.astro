@@ -1,0 +1,89 @@
+---
+import type { NovatechContent } from '../content/schema';
+
+interface Props {
+  testimonials: NovatechContent['testimonials'];
+}
+const { testimonials } = Astro.props;
+
+const starPath =
+  'M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z';
+---
+
+<section class="nt-section nt-testimonials" id="testimonials" aria-labelledby="nt-testimonials-heading">
+  <div class="nt-container">
+    <div class="nt-section__header nt-section__header--split">
+      <div>
+        {testimonials.tag && <p class="nt-section__tag">{testimonials.tag}</p>}
+        {testimonials.title && <h2 id="nt-testimonials-heading" class="nt-section__title">{testimonials.title}</h2>}
+        {testimonials.subtitle && <p class="nt-section__subtitle">{testimonials.subtitle}</p>}
+      </div>
+
+      <div class="nt-slider-controls" aria-label="Testimonials carousel controls">
+        <button
+          type="button"
+          class="nt-autoplay-toggle"
+          id="nt-testimonials-autoplay-toggle"
+          aria-pressed="false"
+          aria-label="Pause testimonial autoplay"
+          data-autoplay-toggle
+        >
+          <span class="nt-autoplay-toggle__dot" aria-hidden="true"></span>
+          <span data-autoplay-label>Pause Autoplay</span>
+        </button>
+        <button type="button" class="nt-slider-btn" id="nt-testimonials-prev" aria-label="Previous testimonial slide">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="M12.5 15 7.5 10l5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <button type="button" class="nt-slider-btn" id="nt-testimonials-next" aria-label="Next testimonial slide">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="m7.5 15 5-5-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="swiper nt-testimonials-swiper" id="nt-testimonials-swiper" data-testimonials-swiper data-autoplay-delay={testimonials.autoplayDelay}>
+      <div class="swiper-wrapper">
+        {
+          testimonials.slides.map((t) => (
+            <article class="swiper-slide nt-testimonial-card">
+              <div class="nt-testimonial-card__inner">
+                <div class="nt-testimonial-card__meta-top">
+                  <div class="nt-testimonial-card__stars" aria-label={`${t.rating} out of 5 stars`}>
+                    {Array.from({ length: t.rating }).map(() => (
+                      <svg viewBox="0 0 20 20" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false">
+                        <path d={starPath} />
+                      </svg>
+                    ))}
+                  </div>
+                  {t.engagementScope && <span class="nt-testimonial-card__scope">{t.engagementScope}</span>}
+                </div>
+
+                <blockquote class="nt-testimonial-card__quote">
+                  <p>&ldquo;{t.quote}&rdquo;</p>
+                </blockquote>
+
+                <div class="nt-testimonial-card__author">
+                  {t.avatar && (
+                    <img class="nt-testimonial-card__avatar" src={t.avatar.src} alt={t.avatar.alt} width="56" height="56" loading="lazy" decoding="async" />
+                  )}
+                  <div>
+                    <div class="nt-testimonial-card__name">{t.authorName}</div>
+                    <div class="nt-testimonial-card__role">
+                      {t.authorRole}
+                      {t.company && <span> &middot; {t.company}</span>}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="swiper-pagination nt-testimonials-pagination" id="nt-testimonials-pagination"></div>
+    </div>
+  </div>
+</section>

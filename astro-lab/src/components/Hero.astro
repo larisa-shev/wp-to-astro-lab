@@ -1,0 +1,82 @@
+---
+import type { NovatechContent } from '../content/schema';
+
+interface Props {
+  hero: NovatechContent['hero'];
+}
+const { hero } = Astro.props;
+---
+
+<section class="nt-hero" id="hero" aria-labelledby="nt-hero-heading">
+  <div class="nt-container">
+    <div class="nt-hero__grid">
+      <div class="nt-hero__content">
+        {
+          hero.eyebrow && (
+            <div class="nt-eyebrow">
+              <span class="nt-eyebrow__pulse" aria-hidden="true" />
+              <span>{hero.eyebrow}</span>
+            </div>
+          )
+        }
+
+        <h1 id="nt-hero-heading" class="nt-hero__title">{hero.title}</h1>
+
+        {hero.subtitle && <p class="nt-hero__subtitle">{hero.subtitle}</p>}
+
+        <div class="nt-hero__actions">
+          {
+            hero.primaryCta && (
+              <a class="nt-btn nt-btn--primary" href={hero.primaryCta.url}>
+                <span>{hero.primaryCta.text}</span>
+                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                  <path d="M4 10h12m-4-4 4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            )
+          }
+          {
+            hero.secondaryCta && (
+              <a class="nt-btn nt-btn--secondary" href={hero.secondaryCta.url}>
+                {hero.secondaryCta.text}
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="nt-hero__visual">
+        <figure class="nt-hero__figure">
+          {
+            hero.image && (
+              <img
+                class="nt-hero__img"
+                src={hero.image.src}
+                alt={hero.image.alt}
+                width={hero.image.width}
+                height={hero.image.height}
+                fetchpriority="high"
+                decoding="async"
+              />
+            )
+          }
+          {hero.caption && <figcaption class="nt-hero__caption">{hero.caption}</figcaption>}
+        </figure>
+      </div>
+    </div>
+
+    {
+      hero.stats.length > 0 && (
+        <dl class="nt-hero__stats" aria-label="Key operational performance metrics">
+          {hero.stats.map((stat) => (
+            <div class="nt-stat-card">
+              <dt class="nt-stat-card__label">{stat.label}</dt>
+              <dd class="nt-stat-card__value">{stat.value}</dd>
+              {stat.detail && <dd class="nt-stat-card__detail">{stat.detail}</dd>}
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </div>
+</section>

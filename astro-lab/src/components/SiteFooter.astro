@@ -1,0 +1,81 @@
+---
+import type { NovatechContent } from '../content/schema';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  header: NovatechContent['header'];
+  contact: NovatechContent['contact'];
+  footer: NovatechContent['footer'];
+}
+const { header, contact, footer } = Astro.props;
+---
+
+<footer class="nt-footer" id="site-footer">
+  <div class="nt-container">
+    <div class="nt-footer__grid">
+      <div class="nt-footer__brand-col">
+        <BrandMark logoText={header.logoText} logoBadge={header.logoBadge} footer />
+        {footer.description && <p class="nt-footer__desc">{footer.description}</p>}
+      </div>
+
+      <div class="nt-footer__nav-col">
+        <h2 class="nt-footer__heading">Platform Navigation</h2>
+        <ul class="nt-footer__list">
+          {
+            header.nav.map((item) => (
+              <li>
+                <a class="nt-footer__link" href={item.url}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li><a class="nt-footer__link" href="#contact">Architecture Inquiry</a></li>
+        </ul>
+      </div>
+
+      <div class="nt-footer__contact-col">
+        <h2 class="nt-footer__heading">Engineering Desk (Demo)</h2>
+        <dl class="nt-footer__contact-list">
+          {
+            contact.email && (
+              <div class="nt-footer__contact-item">
+                <dt class="nt-sr-only">Email</dt>
+                <dd><a class="nt-footer__link" href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+              </div>
+            )
+          }
+          {
+            contact.phone && (
+              <div class="nt-footer__contact-item">
+                <dt class="nt-sr-only">Phone</dt>
+                <dd>{contact.phone}</dd>
+              </div>
+            )
+          }
+          {
+            contact.address && (
+              <div class="nt-footer__contact-item">
+                <dt class="nt-sr-only">Address</dt>
+                <dd>{contact.address}</dd>
+              </div>
+            )
+          }
+          {
+            contact.officeHours && (
+              <div class="nt-footer__contact-item">
+                <dt class="nt-sr-only">Operating Hours</dt>
+                <dd class="nt-footer__hours">{contact.officeHours}</dd>
+              </div>
+            )
+          }
+        </dl>
+      </div>
+    </div>
+
+    <div class="nt-footer__bottom">
+      {footer.copyright && <p class="nt-footer__copyright">{footer.copyright}</p>}
+      {footer.demoNotice && <p class="nt-footer__disclaimer">{footer.demoNotice}</p>}
+    </div>
+  </div>
+</footer>

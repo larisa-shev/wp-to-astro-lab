@@ -1,0 +1,22 @@
+---
+interface Props {
+  logoText: string;
+  logoBadge?: string;
+  ariaLabel?: string;
+  footer?: boolean;
+}
+const { logoText, logoBadge, ariaLabel, footer = false } = Astro.props;
+---
+
+<a class:list={['nt-brand', { 'nt-brand--footer': footer }]} href="/" aria-label={ariaLabel}>
+  <span class="nt-brand__mark" aria-hidden="true">
+    <svg viewBox="0 0 28 28" width="28" height="28" fill="none" focusable="false">
+      <rect x="2" y="2" width="24" height="24" rx="6" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="1.75"></rect>
+      <path d="M8.5 19V9L14 15.5L19.5 9V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </span>
+  <span class="nt-brand__wordmark">
+    <span class="nt-brand__name">{logoText}</span>
+    {logoBadge && <span class="nt-brand__badge">{logoBadge}</span>}
+  </span>
+</a>

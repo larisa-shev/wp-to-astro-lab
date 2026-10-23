@@ -1,0 +1,69 @@
+---
+import type { NovatechContent } from '../content/schema';
+import ContactForm from './ContactForm.astro';
+
+interface Props {
+  contact: NovatechContent['contact'];
+}
+const { contact } = Astro.props;
+---
+
+<section class="nt-section nt-section--alt nt-contact" id="contact" aria-labelledby="nt-contact-heading">
+  <div class="nt-container">
+    <div class="nt-contact__grid">
+      <div class="nt-contact__info">
+        {contact.tag && <p class="nt-section__tag">{contact.tag}</p>}
+        {contact.title && <h2 id="nt-contact-heading" class="nt-section__title">{contact.title}</h2>}
+        {contact.subtitle && <p class="nt-contact__lead">{contact.subtitle}</p>}
+
+        {
+          contact.slaNote && (
+            <div class="nt-contact__sla-badge">
+              <span class="nt-contact__sla-dot" aria-hidden="true" />
+              <span>{contact.slaNote}</span>
+            </div>
+          )
+        }
+
+        <dl class="nt-contact__details">
+          {
+            contact.email && (
+              <div class="nt-contact__detail-row">
+                <dt>Architecture Desk</dt>
+                <dd><a href={`mailto:${contact.email}`}>{contact.email}</a></dd>
+              </div>
+            )
+          }
+          {
+            contact.phone && (
+              <div class="nt-contact__detail-row">
+                <dt>Direct Telephone</dt>
+                <dd>{contact.phone}</dd>
+              </div>
+            )
+          }
+          {
+            contact.address && (
+              <div class="nt-contact__detail-row">
+                <dt>Headquarters</dt>
+                <dd>{contact.address}</dd>
+              </div>
+            )
+          }
+          {
+            contact.officeHours && (
+              <div class="nt-contact__detail-row">
+                <dt>Support Window</dt>
+                <dd>{contact.officeHours}</dd>
+              </div>
+            )
+          }
+        </dl>
+      </div>
+
+      <div class="nt-contact__form-card">
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

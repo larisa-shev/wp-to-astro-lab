@@ -1,0 +1,22 @@
+---
+import '../styles/novatech.css';
+import 'swiper/css/bundle';
+
+interface Props {
+  title: string;
+  lang?: string;
+}
+const { title, lang = 'en-US' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} class="nt-html">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="nt-body">
+    <slot />
+  </body>
+</html>

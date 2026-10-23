@@ -1,0 +1,81 @@
+---
+import type { NovatechContent } from '../content/schema';
+
+interface Props {
+  cases: NovatechContent['cases'];
+}
+const { cases } = Astro.props;
+---
+
+<section class="nt-section nt-section--alt nt-cases" id="cases" aria-labelledby="nt-cases-heading">
+  <div class="nt-container">
+    <div class="nt-section__header nt-section__header--split">
+      <div>
+        {cases.tag && <p class="nt-section__tag">{cases.tag}</p>}
+        {cases.title && <h2 id="nt-cases-heading" class="nt-section__title">{cases.title}</h2>}
+        {cases.subtitle && <p class="nt-section__subtitle">{cases.subtitle}</p>}
+      </div>
+
+      <div class="nt-slider-controls" aria-label="Case studies carousel controls">
+        <button type="button" class="nt-slider-btn" id="nt-cases-prev" aria-label="Previous case study slide">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="M12.5 15 7.5 10l5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <button type="button" class="nt-slider-btn" id="nt-cases-next" aria-label="Next case study slide">
+          <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+            <path d="m7.5 15 5-5-5-5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="swiper nt-cases-swiper" id="nt-cases-swiper" data-cases-swiper>
+      <div class="swiper-wrapper">
+        {
+          cases.slides.map((slide) => (
+            <article class="swiper-slide nt-case-card">
+              {slide.image && (
+                <div class="nt-case-card__media">
+                  <img
+                    class="nt-case-card__img"
+                    src={slide.image.src}
+                    alt={slide.image.alt}
+                    width={slide.image.width}
+                    height={slide.image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {slide.category && <span class="nt-case-card__category">{slide.category}</span>}
+                </div>
+              )}
+
+              <div class="nt-case-card__body">
+                {slide.clientName && <p class="nt-case-card__client">{slide.clientName}</p>}
+                <h3 class="nt-case-card__title">{slide.title}</h3>
+                {slide.summary && <p class="nt-case-card__summary">{slide.summary}</p>}
+
+                <div class="nt-case-card__metrics">
+                  {slide.metricValue && (
+                    <div class="nt-case-card__primary-metric">
+                      <span class="nt-case-card__metric-val">{slide.metricValue}</span>
+                      <span class="nt-case-card__metric-lbl">{slide.metricLabel}</span>
+                    </div>
+                  )}
+                  {slide.secondaryMetric && <p class="nt-case-card__secondary-metric">{slide.secondaryMetric}</p>}
+                </div>
+
+                {slide.techStack && <p class="nt-case-card__stack">{slide.techStack}</p>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="nt-swiper-footer">
+        <div class="swiper-pagination nt-cases-pagination" id="nt-cases-pagination"></div>
+        {cases.disclaimer && <p class="nt-cases__disclaimer">{cases.disclaimer}</p>}
+      </div>
+    </div>
+  </div>
+</section>

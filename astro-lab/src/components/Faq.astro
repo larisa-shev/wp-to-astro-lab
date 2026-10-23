@@ -1,0 +1,57 @@
+---
+import type { NovatechContent } from '../content/schema';
+
+interface Props {
+  faq: NovatechContent['faq'];
+}
+const { faq } = Astro.props;
+---
+
+<section class="nt-section nt-faq" id="faq" aria-labelledby="nt-faq-heading">
+  <div class="nt-container nt-container--narrow">
+    <div class="nt-section__header">
+      {faq.tag && <p class="nt-section__tag">{faq.tag}</p>}
+      {faq.title && <h2 id="nt-faq-heading" class="nt-section__title">{faq.title}</h2>}
+      {faq.subtitle && <p class="nt-section__subtitle">{faq.subtitle}</p>}
+    </div>
+
+    <div class="nt-accordion nt-faq-accordion" id="nt-faq-accordion" data-accordion="faq" data-allow-multiple="false">
+      {
+        faq.items.map((item, idx) => {
+          const triggerId = `nt-faq-trigger-${idx + 1}`;
+          const panelId = `nt-faq-panel-${idx + 1}`;
+          return (
+            <div class:list={['nt-accordion__item', { 'is-open': item.defaultOpen }]} data-accordion-item>
+              <h3 class="nt-accordion__heading">
+                <button
+                  type="button"
+                  class="nt-accordion__trigger"
+                  id={triggerId}
+                  aria-expanded={item.defaultOpen ? 'true' : 'false'}
+                  aria-controls={panelId}
+                  data-accordion-trigger
+                >
+                  <span class="nt-accordion__title-group">
+                    {item.badge && <span class="nt-faq__badge">{item.badge}</span>}
+                    <span class="nt-accordion__title">{item.question}</span>
+                  </span>
+                  <span class="nt-accordion__icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" focusable="false">
+                      <path d="M5 7.5 10 12.5 15 7.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div id={panelId} class="nt-accordion__panel" role="region" aria-labelledby={triggerId} hidden={!item.defaultOpen} data-accordion-panel>
+                <div class="nt-accordion__panel-inner">
+                  <p class="nt-faq__answer">{item.answer}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
