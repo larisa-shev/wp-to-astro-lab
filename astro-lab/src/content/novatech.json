@@ -1,0 +1,417 @@
+{
+  "meta": {
+    "pageTitle": "NovaTech Solutions – NovaTech Solutions",
+    "lang": "en-US",
+    "sourcePageId": 332,
+    "sourceModified": "2026-10-23T15:13:37"
+  },
+  "header": {
+    "logoText": "NovaTech",
+    "logoBadge": "Solutions",
+    "announcement": "DEMONSTRATION LAB ENVIRONMENT // WORDPRESS 6.8 + ACF FREE BASELINE FOR ASTRO MIGRATION",
+    "cta": {
+      "text": "Schedule Architecture Review",
+      "url": "#contact"
+    },
+    "nav": [
+      {
+        "label": "Services",
+        "url": "#services"
+      },
+      {
+        "label": "Case Studies",
+        "url": "#cases"
+      },
+      {
+        "label": "Client Outcomes",
+        "url": "#testimonials"
+      },
+      {
+        "label": "Delivery Model",
+        "url": "#process"
+      },
+      {
+        "label": "FAQ",
+        "url": "#faq"
+      }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Cloud Platform, Data & Reliability Engineering",
+    "title": "Resilient cloud infrastructure and data platforms built for predictable scale.",
+    "subtitle": "NovaTech Solutions partners with regulated enterprises and high-growth B2B software teams to modernize legacy workloads, reduce cloud unit costs, and ship auditable production systems without operational downtime.",
+    "primaryCta": {
+      "text": "Request Technical Scoping",
+      "url": "#contact"
+    },
+    "secondaryCta": {
+      "text": "Explore Engineering Case Studies",
+      "url": "#cases"
+    },
+    "image": {
+      "src": "/images/novatech-hero-architecture.png",
+      "alt": "Diagram of NovaTech multi-region Kubernetes, event streaming, and zero-trust API gateway topology",
+      "width": 960,
+      "height": 640
+    },
+    "caption": "Reference Architecture: Multi-region Kubernetes control plane with automated failover and OpenTelemetry observability (Fictional Demo Data).",
+    "stats": [
+      {
+        "value": "99.98%",
+        "label": "Measured Production SLA",
+        "detail": "Across 40+ managed multi-region clusters (Demo metric)"
+      },
+      {
+        "value": "34%",
+        "label": "Average Cloud Spend Reduction",
+        "detail": "Achieved within 90 days via compute right-sizing & spot orchestration"
+      },
+      {
+        "value": "< 18 ms",
+        "label": "p95 API Gateway Latency",
+        "detail": "For high-throughput transactional workloads in EU & US regions"
+      }
+    ]
+  },
+  "services": {
+    "tag": "CAPABILITIES & DELIVERABLES",
+    "title": "Engineering practices designed around measurable operational outcomes",
+    "subtitle": "We do not sell generic staffing hours. Each engagement delivers production-grade infrastructure code, automated runbooks, and full knowledge transfer to your internal teams.",
+    "cards": [
+      {
+        "icon": "cloud",
+        "badge": "Infrastructure & FinOps",
+        "title": "Cloud Architecture & Cost Governance",
+        "description": "We audit and refactor AWS, GCP, and Azure environments using Terraform and OpenTofu - eliminating idle provisioning, over-privileged IAM roles, and cross-AZ data transfer bottlenecks.",
+        "deliverable": "Deliverable: Multi-account Terraform modules + automated FinOps cost anomaly alerts",
+        "link": {
+          "text": "Review cloud scope",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "data",
+        "badge": "Real-Time Data",
+        "title": "Event Streaming & Lakehouse Pipelines",
+        "description": "Replace brittle overnight batch scripts with fault-tolerant Kafka, Debezium CDC, and ClickHouse or Snowflake pipelines with strict schema contracts and data lineage.",
+        "deliverable": "Deliverable: Sub-minute CDC ingestion pipelines + automated data quality gates",
+        "link": {
+          "text": "Explore data architectures",
+          "url": "#cases"
+        }
+      },
+      {
+        "icon": "platform",
+        "badge": "Developer Experience",
+        "title": "Internal Developer Platforms (IDP)",
+        "description": "Standardize how product teams deploy services with golden CI/CD templates, ArgoCD GitOps workflows, ephemeral preview environments, and unified OpenTelemetry tracing.",
+        "deliverable": "Deliverable: Self-service service catalog + GitOps deployment pipelines",
+        "link": {
+          "text": "See platform workflow",
+          "url": "#process"
+        }
+      },
+      {
+        "icon": "security",
+        "badge": "Compliance & Hardening",
+        "title": "Zero-Trust Security & Compliance Automation",
+        "description": "Embed SOC 2 Type II, ISO 27001, and HIPAA controls directly into your CI/CD pipeline with automated policy-as-code (OPA), container signing, and secrets rotation.",
+        "deliverable": "Deliverable: Continuous compliance evidence collector + hardened runtime policies",
+        "link": {
+          "text": "Inspect security controls",
+          "url": "#faq"
+        }
+      },
+      {
+        "icon": "ai",
+        "badge": "Production AI Systems",
+        "title": "Private Retrieval & Applied ML Infrastructure",
+        "description": "Deploy deterministic document retrieval (RAG), vector indexing, and model-serving gateways inside your private VPC with strict token budgets, latency SLAs, and PII redaction.",
+        "deliverable": "Deliverable: VPC-isolated inference gateway + automated evaluation benchmark suite",
+        "link": {
+          "text": "Discuss AI deployment",
+          "url": "#contact"
+        }
+      },
+      {
+        "icon": "modernization",
+        "badge": "Legacy Decoupling",
+        "title": "Monolith Decomposition & Composable Web",
+        "description": "Incrementally strangle high-maintenance legacy monoliths and slow CMS installations into fast, statically generated or edge-rendered architectures without breaking SEO or integrations.",
+        "deliverable": "Deliverable: Phased strangler-fig migration + zero-downtime routing cutover",
+        "link": {
+          "text": "Plan a migration",
+          "url": "#contact"
+        }
+      }
+    ]
+  },
+  "cases": {
+    "tag": "SELECTED ENGAGEMENTS (DEMO DATA)",
+    "title": "Verified engineering outcomes across regulated industries",
+    "subtitle": "Use the controls or swipe to inspect how our architecture teams solve throughput, reliability, and infrastructure cost challenges.",
+    "disclaimer": "All client names, architectures, and metrics below are fictional engineering scenarios created for the WP-to-Astro migration lab.",
+    "slides": [
+      {
+        "category": "FinTech",
+        "clientName": "PayVantage Clearing (Demo Client)",
+        "title": "Migrating a monolithic SQL settlement core to an event-sourced ledger",
+        "summary": "Decomposed a single-threaded overnight batch clearing database into partitioned Kafka streams and idempotent Go microservices with zero transaction loss during cutover.",
+        "metricValue": "42,000 tx/s",
+        "metricLabel": "Sustained peak settlement throughput",
+        "secondaryMetric": "68% reduction in end-of-day reconciliation window",
+        "techStack": "Go | Apache Kafka | PostgreSQL 16 | Kubernetes | OpenTelemetry",
+        "image": {
+          "src": "/images/novatech-case-fintech-ledger.png",
+          "alt": "Settlement pipeline architecture diagram for PayVantage Clearing",
+          "width": 720,
+          "height": 450
+        }
+      },
+      {
+        "category": "Supply Chain",
+        "clientName": "NorthStar Freight Systems (Demo Client)",
+        "title": "Real-time cold-chain telemetry ingestion for 18,500 refrigerated containers",
+        "summary": "Replaced polling-based regional servers with an MQTT edge broker mesh and ClickHouse time-series analytics to detect temperature excursion anomalies in under 3 seconds.",
+        "metricValue": "2.4 sec",
+        "metricLabel": "End-to-end sensor alert latency (p99)",
+        "secondaryMetric": "$1.1M annual savings in prevented cargo spoilage (Demo)",
+        "techStack": "Rust | EMQX (MQTT) | ClickHouse | Terraform | AWS IoT",
+        "image": {
+          "src": "/images/novatech-case-freight-telemetry.png",
+          "alt": "IoT telemetry and cold-chain routing dashboard diagram for NorthStar Logistics",
+          "width": 720,
+          "height": 450
+        }
+      },
+      {
+        "category": "HealthTech",
+        "clientName": "Veritas Clinical Diagnostics (Demo Client)",
+        "title": "Zero-trust HL7 FHIR data exchange across 90 regional laboratories",
+        "summary": "Engineered an mTLS-authenticated API gateway and automated PHI field-level encryption pipeline, accelerating compliance audits from six weeks to automated daily reports.",
+        "metricValue": "64% faster",
+        "metricLabel": "Diagnostic report turnaround time",
+        "secondaryMetric": "100% automated HIPAA & SOC 2 audit evidence generation",
+        "techStack": "TypeScript | Envoy Proxy | HashiCorp Vault | AWS ECS | OPA",
+        "image": {
+          "src": "/images/novatech-case-healthtech-fhir.png",
+          "alt": "HIPAA-compliant clinical data pipeline diagram for Veritas Diagnostics",
+          "width": 720,
+          "height": 450
+        }
+      },
+      {
+        "category": "Energy Grid",
+        "clientName": "Helios Grid Operations (Demo Client)",
+        "title": "Distributed load forecasting for 1.4 million residential smart meters",
+        "summary": "Built a fault-tolerant feature store and streaming aggregation pipeline that ingests 15-minute interval readings to balance solar and wind feed-in tariffs automatically.",
+        "metricValue": "38% lower",
+        "metricLabel": "Compute cost per billion metered events",
+        "secondaryMetric": "99.99% pipeline availability during peak storm events",
+        "techStack": "Python | Apache Flink | Apache Iceberg | Kubernetes | Prometheus",
+        "image": {
+          "src": "/images/novatech-case-energy-grid.png",
+          "alt": "Distributed renewable load balancing platform diagram for Helios Grid",
+          "width": 720,
+          "height": 450
+        }
+      },
+      {
+        "category": "SaaS Infrastructure",
+        "clientName": "CloudScale Workspaces (Demo Client)",
+        "title": "Self-service Kubernetes platform for 180 product engineers",
+        "summary": "Replaced manual DevOps ticket queues with backstage service templates, ArgoCD GitOps, and automated preview environments for every pull request.",
+        "metricValue": "14 mins",
+        "metricLabel": "New microservice provisioning time (down from 6 days)",
+        "secondaryMetric": "4.2x increase in weekly production deployment frequency",
+        "techStack": "ArgoCD | Backstage | Crossplane | GitHub Actions | Grafana",
+        "image": {
+          "src": "/images/novatech-case-saas-idp.png",
+          "alt": "Self-service Kubernetes platform diagram for CloudScale B2B SaaS",
+          "width": 720,
+          "height": 450
+        }
+      }
+    ]
+  },
+  "testimonials": {
+    "tag": "CLIENT PERSPECTIVES (DEMO)",
+    "title": "Why engineering leaders trust NovaTech with critical systems",
+    "subtitle": "Fictional executive feedback illustrating typical stakeholder outcomes across infrastructure modernization and platform delivery.",
+    "autoplayDelay": 6000,
+    "slides": [
+      {
+        "quote": "NovaTech replaced our fragile overnight settlement scripts with an event-driven ledger without a single minute of merchant downtime. More importantly, their engineers documented every runbook and trained our internal SRE team to own the platform.",
+        "authorName": "Elena Vance",
+        "authorRole": "VP of Platform Engineering",
+        "company": "PayVantage Clearing (Demo)",
+        "engagementScope": "Core Ledger Modernization | 16-Week Engagement",
+        "rating": 5,
+        "avatar": {
+          "src": "/images/novatech-avatar-elena-rostova.png",
+          "alt": "Avatar badge for Elena Vance, VP of Platform Engineering at PayVantage Clearing",
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "quote": "Within six weeks of their cloud architecture audit, we cut our monthly AWS bill by 36% while doubling our telemetry ingestion capacity. Every recommendation came as tested Terraform code rather than a slide deck.",
+        "authorName": "Marcus Thorne",
+        "authorRole": "Chief Technology Officer",
+        "company": "NorthStar Freight Systems (Demo)",
+        "engagementScope": "IoT Telemetry & FinOps Overhaul | 12-Week Engagement",
+        "rating": 5,
+        "avatar": {
+          "src": "/images/novatech-avatar-marcus-thorne.png",
+          "alt": "Avatar badge for Marcus Thorne, Chief Technology Officer at NorthStar Freight Systems",
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "quote": "Passing our healthcare security audits used to freeze feature development for two months every year. NovaTech embedded policy-as-code checks directly into our CI pipelines so compliance verification happens automatically on every commit.",
+        "authorName": "Dr. Claire Bennett",
+        "authorRole": "Head of Clinical Informatics",
+        "company": "Veritas Clinical Diagnostics (Demo)",
+        "engagementScope": "Zero-Trust FHIR Gateway | 14-Week Engagement",
+        "rating": 5,
+        "avatar": {
+          "src": "/images/novatech-avatar-claire-bennett.png",
+          "alt": "Avatar badge for Dr. Claire Bennett, Head of Clinical Informatics at Veritas Diagnostics",
+          "width": 160,
+          "height": 160
+        }
+      },
+      {
+        "quote": "Our product teams used to wait nearly a week for infrastructure provisioning. The GitOps platform NovaTech built lets any developer spin up an isolated staging stack in under fifteen minutes with built-in cost limits.",
+        "authorName": "David Keller",
+        "authorRole": "SVP of Infrastructure",
+        "company": "Helios Grid Operations (Demo)",
+        "engagementScope": "Internal Developer Platform | 10-Week Engagement",
+        "rating": 5,
+        "avatar": {
+          "src": "/images/novatech-avatar-david-keller.png",
+          "alt": "Avatar badge for David Keller, SVP of Infrastructure at Helios Grid Operations",
+          "width": 160,
+          "height": 160
+        }
+      }
+    ]
+  },
+  "process": {
+    "tag": "DELIVERY METHODOLOGY",
+    "title": "How we take complex architecture from discovery to production handoff",
+    "subtitle": "Each phase has explicit entry criteria, architectural decision records (ADRs), and verifiable production gates. You can expand multiple phases simultaneously to compare deliverables.",
+    "allowMultiple": true,
+    "steps": [
+      {
+        "number": "01",
+        "title": "Architecture Discovery & Baseline Telemetry Audit",
+        "duration": "Weeks 1-2",
+        "summary": "We instrument your existing workloads, trace production bottlenecks, analyze cloud billing line-items, and map security boundaries before writing a single line of migration code.",
+        "deliverables": [
+          "Current-state system topology & dependency map",
+          "Cloud unit-cost & bottleneck analysis report",
+          "Prioritized Risk Register & Architecture Decision Records (ADRs)",
+          "Fixed-scope implementation roadmap with rollback milestones"
+        ],
+        "governanceNote": "Gate 01: Executive & Principal Architect sign-off on target SLA metrics and budget ceiling.",
+        "defaultOpen": true
+      },
+      {
+        "number": "02",
+        "title": "Foundation Blueprint & Infrastructure-as-Code",
+        "duration": "Weeks 3-5",
+        "summary": "We provision isolated landing zones, modular Terraform/OpenTofu stacks, CI/CD pipelines, and automated security policy checks inside your version control system.",
+        "deliverables": [
+          "Versioned Terraform / OpenTofu infrastructure modules",
+          "Automated CI/CD pipelines with OPA security & compliance gates",
+          "OpenTelemetry collector mesh, Grafana dashboards & PagerDuty alert routing",
+          "Disaster recovery and automated backup verification scripts"
+        ],
+        "governanceNote": "Gate 02: Automated penetration test & chaos failover drill in staging environment.",
+        "defaultOpen": true
+      },
+      {
+        "number": "03",
+        "title": "Incremental Migration & Shadow Traffic Validation",
+        "duration": "Weeks 6-10",
+        "summary": "Instead of high-risk \"big bang\" cutovers, we use strangler-fig routing and dual-write shadow traffic to validate performance, data parity, and latency under real production load.",
+        "deliverables": [
+          "Canary & blue/green traffic routing configuration",
+          "Automated data parity verifiers between legacy and target stores",
+          "Load testing benchmarks at 3x historical peak traffic",
+          "Zero-downtime production cutover execution"
+        ],
+        "governanceNote": "Gate 03: 100% data reconciliation parity & p95 latency verification across 72 hours of live load.",
+        "defaultOpen": false
+      },
+      {
+        "number": "04",
+        "title": "Operational Handover, Runbooks & Team Enablement",
+        "duration": "Weeks 11-12",
+        "summary": "We ensure your internal engineering team has full ownership - conducting live game-day incident simulations, pair-programming sessions, and comprehensive documentation handoff.",
+        "deliverables": [
+          "Operational runbooks & incident response playbooks",
+          "Recorded architecture walkthroughs & live SRE game-day drills",
+          "30-day post-cutover hypercare support SLA",
+          "Complete removal of legacy decommissioned infrastructure"
+        ],
+        "governanceNote": "Gate 04: Internal team independently executes deployment, rollback, and incident recovery drills.",
+        "defaultOpen": false
+      }
+    ]
+  },
+  "faq": {
+    "tag": "TECHNICAL FAQ",
+    "title": "Common questions about engagement structure, security, and ownership",
+    "subtitle": "Clear answers regarding how our engineering teams integrate with your organization.",
+    "items": [
+      {
+        "badge": "Code Ownership",
+        "question": "Who owns the infrastructure modules, scripts, and architectural code produced during an engagement?",
+        "answer": "Your organization retains 100% intellectual property and source code ownership from day one. All code is committed directly to your private Git repositories under your license, with zero proprietary lock-in or recurring licensing fees to NovaTech.",
+        "defaultOpen": true
+      },
+      {
+        "badge": "Zero-Downtime Cutover",
+        "question": "How do you prevent service disruption when migrating live databases or legacy monoliths?",
+        "answer": "We use change-data-capture (CDC) replication and dual-read/dual-write proxy layers so the new system processes shadow traffic alongside your legacy stack. Traffic is shifted in 1%, 10%, 50%, and 100% increments with instant automated rollback triggers if error budgets are exceeded.",
+        "defaultOpen": false
+      },
+      {
+        "badge": "Security & Access",
+        "question": "How do your engineers handle access to regulated production environments (SOC 2, HIPAA, PCI-DSS)?",
+        "answer": "We operate under strict least-privilege principles. Our engineers never store long-lived credentials; all work is performed through your federated SSO with short-lived bastion sessions, mandatory MFA, and full audit logging of every CLI command and pull request.",
+        "defaultOpen": false
+      },
+      {
+        "badge": "Team Collaboration",
+        "question": "Do you replace our internal DevOps or platform team, or work alongside them?",
+        "answer": "We work as a force multiplier alongside your internal engineers. Our goal is to eliminate your architectural backlog and build self-service tooling so your team can focus on core product features rather than firefighting infrastructure tickets.",
+        "defaultOpen": false
+      },
+      {
+        "badge": "Commercial Model",
+        "question": "How are engagements priced and scoped?",
+        "answer": "Every project begins with a fixed-price 2-week Architecture Discovery audit. Following discovery, we provide a milestone-based fixed-scope proposal tied to verifiable engineering deliverables rather than open-ended hourly billing.",
+        "defaultOpen": false
+      }
+    ]
+  },
+  "contact": {
+    "tag": "START A TECHNICAL CONVERSATION",
+    "title": "Request an architecture review or migration feasibility audit",
+    "subtitle": "Share your current infrastructure context below. A Principal Systems Architect will review your note and respond with a proposed technical agenda.",
+    "slaNote": "Direct engineering response within 1 business day - no sales development reps.",
+    "email": "architecture-desk@novatech.local",
+    "phone": "+1 (415) 555-0194 (Demo Line)",
+    "address": "450 Mission Street, Suite 1400, San Francisco, CA 94105 (Fictional HQ)",
+    "officeHours": "Monday - Friday, 08:00 - 18:00 UTC / PST"
+  },
+  "footer": {
+    "description": "NovaTech Solutions is a fictional B2B cloud and platform engineering consultancy created for the WordPress-to-Astro migration laboratory.",
+    "copyright": "(c) 2026 NovaTech Solutions Lab. All rights reserved.",
+    "demoNotice": "Educational Reference Project: All client names, case studies, metrics, and contact details on this page are fictional."
+  }
+}
