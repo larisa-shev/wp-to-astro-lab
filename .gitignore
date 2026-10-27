@@ -56,3 +56,6 @@ Desktop.ini
 *.bak
 *.swp
 *~
+
+# Visual-comparison screenshots and diffs
+astro-lab/tests/artifacts/
