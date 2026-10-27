@@ -20,8 +20,30 @@ h6 {
 	line-height: 1.125;
 }
 
-/* Contact Form 7 plugin stylesheet: the empty status box is hidden until the form has a result. */
-.wpcf7 form.init .wpcf7-response-output {
-	display: none;
+/*
+ * Contact Form 7 plugin stylesheet (the subset used by this form). Without it the
+ * success/error box has no base border (novatech.css only sets border-color) and
+ * the screen-reader live region is rendered visibly as a duplicate message.
+ */
+.wpcf7 .screen-reader-response {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	word-wrap: normal !important;
 }
 
+.wpcf7 form .wpcf7-response-output {
+	border: 2px solid #00a0d2;
+}
+
+.wpcf7 form.init .wpcf7-response-output,
+.wpcf7 form.resetting .wpcf7-response-output,
+.wpcf7 form.submitting .wpcf7-response-output {
+	display: none;
+}
