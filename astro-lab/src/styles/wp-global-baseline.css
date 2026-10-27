@@ -1,0 +1,27 @@
+/*
+ * Rules inherited by the WordPress page from outside the NovaTech stylesheet: typography from the Twenty Twenty-Five block
+ * theme's inline "global-styles" (theme.json). These rules are not part of the
+ * custom NovaTech stylesheet, so they must be reproduced here for visual parity.
+ * Imported BEFORE novatech.css so that .nt-* class rules keep winning, as in WP.
+ */
+body {
+	font-weight: 300;
+	letter-spacing: -0.1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 400;
+	letter-spacing: -0.1px;
+	line-height: 1.125;
+}
+
+/* Contact Form 7 plugin stylesheet: the empty status box is hidden until the form has a result. */
+.wpcf7 form.init .wpcf7-response-output {
+	display: none;
+}
+
