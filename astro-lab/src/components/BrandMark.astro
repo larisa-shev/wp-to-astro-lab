@@ -6,9 +6,12 @@ interface Props {
   footer?: boolean;
 }
 const { logoText, logoBadge, ariaLabel, footer = false } = Astro.props;
+const homeHref = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
-<a class:list={['nt-brand', { 'nt-brand--footer': footer }]} href="/" aria-label={ariaLabel}>
+<a class:list={['nt-brand', { 'nt-brand--footer': footer }]} href={homeHref} aria-label={ariaLabel}>
   <span class="nt-brand__mark" aria-hidden="true">
     <svg viewBox="0 0 28 28" width="28" height="28" fill="none" focusable="false">
       <rect x="2" y="2" width="24" height="24" rx="6" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="1.75"></rect>

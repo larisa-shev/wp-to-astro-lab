@@ -2,6 +2,9 @@
 
 An engineering reference repository for practicing and verifying the migration of a production-style corporate website from **WordPress (ACF Free + Contact Form 7 + Swiper + Custom Child Theme)** to **Astro**.
 
+- **Live Astro Demo (GitHub Pages):** [`https://larisa-shev.github.io/wp-to-astro-lab/`](https://larisa-shev.github.io/wp-to-astro-lab/)
+  *(Note: Because GitHub Pages hosts static files only and does not run the local Node.js + Mailpit form server, the public demo's contact form runs in transparent client-side validation mode without sending network requests or emails.)*
+
 This repository follows a **Clean Reproducible Lab** architecture: only custom theme source code, versioned ACF JSON field schemas (`acf-json/`), MU-plugins, idempotent provisioning scripts, the `astro-lab/` codebase, and technical documentation are tracked in Git. WordPress Core, third-party plugins, database volumes, and secrets are never committed.
 
 ---
@@ -10,6 +13,8 @@ This repository follows a **Clean Reproducible Lab** architecture: only custom t
 
 ```text
 wp-to-astro-lab/
+├── .github/workflows/
+│   └── deploy-pages.yml              # Automated GitHub Pages build & deployment for astro-lab/
 ├── .gitignore                        # Excludes .env, wp-config.php, WP Core, plugins, uploads, DB dumps, and build outputs
 ├── README.md                         # Project overview, architecture, and reproducible setup guide
 ├── wordpress/                        # Isolated Docker environment for the WordPress baseline (Port 8001)
@@ -59,8 +64,9 @@ wp-to-astro-lab/
    - `axllent/mailpit:v1.22.3` (Web UI bound to `127.0.0.1:8025`; SMTP port `1025` is internal to the `wp_lab_net` bridge network).
 2. **Zero Hardcoded Content:**
    - The **NovaTech Solutions** landing page (`http://localhost:8001/novatech-solutions/`) reads 100% of its copy, navigation links, metrics, service cards, case study slides, testimonials, process phases, FAQs, and contact details from **Advanced Custom Fields (ACF Free 6.4.3)**.
-3. **Real Contact Form 7 + Mailpit Delivery:**
-   - Uses the official `contact-form-7` plugin with client/server validation and delivers submissions over SMTP to the internal `mailpit` container.
+3. **Real Contact Form 7 + Mailpit Delivery (Local) & Transparent Static Demo (GitHub Pages):**
+   - Locally, WordPress uses `contact-form-7` over SMTP to `mailpit`, while Astro uses `server/form-server.mjs` (`POST /api/contact`) to deliver submissions to the same local Mailpit instance.
+   - On GitHub Pages (`PUBLIC_STATIC_DEMO=true`), where no Node.js backend exists, the Astro form runs client-side validation using the shared validation rules (`server/validate.mjs`) and displays an explicit notice that no network request or email is sent.
 
 ---
 
@@ -78,11 +84,12 @@ chmod +x ./wordpress/scripts/setup-wp.sh
 ```
 
 ### Service Endpoints
-- **NovaTech Solutions Landing Page (WordPress):** `http://localhost:8001/novatech-solutions/`
+- **Public Astro Live Demo (GitHub Pages):** `https://larisa-shev.github.io/wp-to-astro-lab/`
+- **NovaTech Solutions Landing Page (WordPress Local):** `http://localhost:8001/novatech-solutions/`
 - **WordPress Admin Dashboard:** `http://localhost:8001/wp-admin/` (credentials defined in `wordpress/.env`)
 - **ACF REST API Endpoint:** `http://localhost:8001/wp-json/wp/v2/pages?slug=novatech-solutions&acf_format=standard`
-- **NovaTech Solutions Landing Page (Astro Dev / Preview):** `http://127.0.0.1:4321/`
-- **Astro Contact Form Backend API:** `http://127.0.0.1:4322/api/contact`
+- **NovaTech Solutions Landing Page (Astro Local Dev / Preview):** `http://127.0.0.1:4321/`
+- **Astro Contact Form Backend API (Local):** `http://127.0.0.1:4322/api/contact`
 - **Mailpit Web UI (Captured Emails):** `http://127.0.0.1:8025`
 
 ### Running the Automated Verification Suite

@@ -3,9 +3,13 @@
  * Replacement for the Contact Form 7 form. Markup, ids, labels and placeholders mirror the CF7 output
  * (checked against the rendered WordPress page) so the migrated stylesheet applies unchanged; the
  * `wpcf7*` class names are kept on purpose for that reason. Submission is handled by the local form
- * backend (`server/form-server.mjs`), see src/scripts/contact-form.ts.
+ * backend (`server/form-server.mjs`) or in transparent client-only static demo mode when built with
+ * `PUBLIC_STATIC_DEMO=true` (e.g. GitHub Pages), see src/scripts/contact-form.ts.
  */
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || 'http://127.0.0.1:4322/api/contact';
+const isStaticDemo = import.meta.env.PUBLIC_STATIC_DEMO === 'true';
+const endpoint = isStaticDemo
+  ? '#contact'
+  : import.meta.env.PUBLIC_FORM_ENDPOINT || 'http://127.0.0.1:4322/api/contact';
 ---
 
 <div class="wpcf7" id="nt-contact-form-wrap">
@@ -19,7 +23,8 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || 'http://127.0.0.1:4322/
     aria-label="Contact form"
     novalidate
     data-contact-form
-    data-endpoint={endpoint}
+    data-endpoint={isStaticDemo ? undefined : endpoint}
+    data-static-demo={isStaticDemo ? 'true' : undefined}
   >
     <!-- Honeypot: hidden from humans and assistive tech, bots fill it in. -->
     <div style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
@@ -65,7 +70,11 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || 'http://127.0.0.1:4322/
           <input class="wpcf7-form-control wpcf7-submit has-spinner nt-btn nt-btn--primary" type="submit" value="Request Architecture Consultation" />
         </p>
         <p class="nt-form-privacy">
-          Demo environment notice: submissions are routed exclusively to the local Mailpit container (127.0.0.1:8025) and never leave your machine.
+          {
+            isStaticDemo
+              ? 'Public GitHub Pages demo notice: the Node.js + Mailpit form backend runs only in the local lab environment. Submitting this form validates inputs client-side without sending any network request or email.'
+              : 'Demo environment notice: submissions are routed exclusively to the local Mailpit container (127.0.0.1:8025) and never leave your machine.'
+          }
         </p>
       </div>
     </div>

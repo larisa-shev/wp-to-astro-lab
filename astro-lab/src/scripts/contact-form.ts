@@ -1,15 +1,23 @@
 /**
  * Progressive-enhancement handler for the contact form.
  *
- * Posts to the local form backend (`server/form-server.mjs`) via fetch and renders its validation
+ * Locally, posts to the form backend (`server/form-server.mjs`) via fetch and renders its validation
  * errors / status inside the same markup CF7 used (`wpcf7-not-valid-tip`, `wpcf7-response-output`,
  * form status classes `sent` / `invalid` / `failed`). Success is only shown when the backend
  * answers `{ ok: true }`, i.e. after the message was handed to Mailpit.
+ *
+ * On the public static demo (`data-static-demo="true"`, e.g. GitHub Pages), validates inputs
+ * client-side using the shared validation rules and displays a transparent static-demo notice
+ * without making any network requests.
  */
+import { validateSubmission } from '../../server/validate.mjs';
+
 const MESSAGES = {
   invalid: 'One or more fields require attention. Please review the highlighted inputs below.',
   failed: 'We could not deliver your message due to a server transport error. Please try again later.',
   network: 'We could not reach the form service. Please make sure the local form backend is running (npm run form:server).',
+  staticDemo:
+    'Static Demo Mode (GitHub Pages): Client-side validation passed. No message was sent because the Node.js + Mailpit backend runs only in the local lab environment.',
 };
 
 type FieldErrors = Record<string, string>;
@@ -17,6 +25,7 @@ type FieldErrors = Record<string, string>;
 const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
 
 if (form) {
+  const isStaticDemo = form.dataset.staticDemo === 'true';
   const endpoint = form.dataset.endpoint ?? form.action;
   const output = form.querySelector<HTMLElement>('.wpcf7-response-output')!;
   const live = document.querySelector<HTMLElement>('[data-form-live]');
@@ -67,6 +76,20 @@ if (form) {
 
     try {
       const body = Object.fromEntries(new FormData(form).entries());
+
+      if (isStaticDemo) {
+        const result = validateSubmission(body);
+        if (!result.ok) {
+          showErrors(result.errors as FieldErrors);
+          setStatus('invalid', MESSAGES.invalid);
+          form.querySelector<HTMLElement>('.wpcf7-not-valid')?.focus();
+        } else {
+          form.reset();
+          setStatus('sent', MESSAGES.staticDemo);
+        }
+        return;
+      }
+
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
