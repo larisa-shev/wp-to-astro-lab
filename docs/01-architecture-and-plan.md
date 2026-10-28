@@ -53,6 +53,6 @@ To avoid duplication between PHP registration, the WordPress database, and `acf-
 ## 4. Phased Migration Roadmap
 
 - **Stage 0 (Completed):** Repository initialization, `.gitignore` hardening, Docker Compose configuration, and private GitHub synchronization.
-- **Stage 1 (Current):** Full implementation and verification of the **NovaTech Solutions** WordPress baseline (`http://localhost:8001/novatech-solutions/`).
-- **Stage 2 (Next):** Initialize `astro-lab/`, extract the ACF REST API payload into typed Astro Content Collections / data schemas, and migrate the layout, responsive CSS, Swiper carousels, accessible accordions, and contact form handling.
-- **Stage 3:** Side-by-side comparison of DOM weight, JavaScript payload, accessibility, and Core Web Vitals between WordPress and Astro.
+- **Stage 1 (Completed):** Full implementation and verification of the **NovaTech Solutions** WordPress baseline (`http://localhost:8001/novatech-solutions/`) — see [`02-wordpress-acf-baseline.md`](02-wordpress-acf-baseline.md).
+- **Stage 2 (Completed):** Initialized `astro-lab/`, exported the ACF REST API payload into a Zod-validated JSON schema (`src/content/novatech.json`), and migrated the layout, responsive CSS, Swiper carousels, accessible accordions, and Mailpit-backed contact form — see [`03-astro-migration.md`](03-astro-migration.md).
+- **Stage 3 (Completed):** Evidence-based side-by-side comparison of DOM weight, HTTP/JavaScript/CSS payload, visual parity, accessibility, and lab Core Web Vitals between WordPress and Astro — see [`04-wordpress-vs-astro-comparison.md`](04-wordpress-vs-astro-comparison.md).

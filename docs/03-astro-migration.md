@@ -150,7 +150,7 @@ Per-section pixel diff (375 / 768 / 1440): hero 0 / 0 / 0.1 %, services 0.35 / 0
 Remaining, understood, not changed:
 
 * **Contact text diff:** the comparer reports the contact section as differing only because Astro's off-screen honeypot label ("Leave this field empty") is part of `innerText`. It is positioned at `left:-10000px` and `aria-hidden`, so it is not visible.
-* **Cases section 8 px shorter in Astro** at every viewport: most likely the Swiper 12.1.2 vs. 11.2.6 pagination/wrapper height (the intentional security upgrade, ง1). Cosmetic; not pursued.
+* **Cases section 8 px shorter in Astro** at every viewport: most likely the Swiper 12.1.2 vs. 11.2.6 pagination/wrapper height (the intentional security upgrade, ยง1). Cosmetic; not pursued.
 * **Contact section -15 px (375) / +16 px (768, 1440):** small differences in the form area (WP's CF7 spinner/screen-reader elements vs. Astro's own live region). Cosmetic; not pursued.
 * Residual pixel diff otherwise comes from sub-pixel text rendering, the autoplaying testimonial slide state and image/slide state at capture time.
 ## 9. Known limitations
@@ -180,9 +180,9 @@ Remaining, understood, not changed:
 
 * Containers started for verification (only these, via `docker compose -f wordpress/docker-compose.yml up -d --no-deps db wordpress mailpit`): `wordpress-db-1`, `wordpress-wordpress-1`, `wordpress-mailpit-1`. `wpcli` and the unrelated AI Hub / Supabase / n8n containers were not touched.
 * Contact form delivery was re-verified by the e2e test, which submits through the real backend and finds the message in Mailpit via its API (recipient, reply-to, subject, body, HTML escaping).
-* One visual defect was fixed (missing WordPress-inherited global styles, see ง8). Style diffs went from 20 to 0 per viewport and the full-page diff from 11-16 % to 2.5-4.8 %.
+* One visual defect was fixed (missing WordPress-inherited global styles, see ยง8). Style diffs went from 20 to 0 per viewport and the full-page diff from 11-16 % to 2.5-4.8 %.
 * On this machine `npm.ps1` is blocked by the PowerShell execution policy; use `npm.cmd` (policy not changed). Tests that open local ports need to run outside the restricted command sandbox.
-* `npm audit` findings are unchanged from ง9 (no dependency was upgraded).
+* `npm audit` findings are unchanged from ยง9 (no dependency was upgraded).
 * Temporary diagnostic files (`_styles-diff.mjs`, a one-off contact probe) were removed. Screenshots in `tests/artifacts/` are git-ignored and kept for Stage 3.
 * **Success/error message styling (follow-up):** the form's status box had no border and the screen-reader live region appeared as a second visible message. Cause: the Contact Form 7 plugin stylesheet (base `border: 2px solid`, `.screen-reader-response` visually-hidden rule, hiding the box in `init`/`resetting`/`submitting`) was not ported. These rules were added to `src/styles/wp-global-baseline.css`. A sent-state probe on both sites now shows identical computed styles (2px solid rgb(16,185,129) border, #ecfdf5 background, #065f46 text, same margin/padding/radius/font) and exactly one visible message (the live region is clipped to 1px). The duplicate was not intentional; the live region stays for assistive tech only.
 * **Running e2e next to manual dev servers:** the e2e defaults to ports 4321/4322. If `astro dev` / `form:server` are running, use `E2E_SITE_PORT` / `E2E_FORM_PORT` and build with a matching `PUBLIC_FORM_ENDPOINT` (e.g. `http://127.0.0.1:4422/api/contact`), otherwise the built page posts to :4322 and the form tests fail on origin checks. Verified: 19/19 passed this way after the style fix.

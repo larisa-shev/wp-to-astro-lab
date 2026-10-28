@@ -1,0 +1,821 @@
+{
+  "compress": "gzip (static server)",
+  "generatedAt": "2026-10-27T17:16:39.439Z",
+  "runsPerCell": 7,
+  "browser": "Chrome 156.0.8078.48",
+  "node": "v22.17.1",
+  "profiles": [
+    {
+      "name": "desktop-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "cpu": 1,
+      "net": null
+    },
+    {
+      "name": "mobile-375-throttled",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "cpu": 4,
+      "net": {
+        "latency": 150,
+        "down": 209715.2,
+        "up": 96000
+      }
+    }
+  ],
+  "urls": {
+    "wordpress": "http://localhost:8001/novatech-solutions/",
+    "astro": "http://127.0.0.1:4341/"
+  },
+  "results": {
+    "desktop-1440": {
+      "wordpress": {
+        "runs": 7,
+        "metrics": {
+          "ttfb": {
+            "median": 176.7,
+            "min": 154.5,
+            "max": 181.4
+          },
+          "fcp": {
+            "median": 332,
+            "min": 304,
+            "max": 356
+          },
+          "lcp": {
+            "median": 332,
+            "min": 304,
+            "max": 356
+          },
+          "cls": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "tbtApprox": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domContentLoaded": {
+            "median": 308.9,
+            "min": 286.2,
+            "max": 327.9
+          },
+          "load": {
+            "median": 330,
+            "min": 315.5,
+            "max": 349.3
+          },
+          "longTaskCount": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        "resources": {
+          "byType": {
+            "html": {
+              "count": 1,
+              "raw": 101384,
+              "gzip": 19425,
+              "br": 15559
+            },
+            "css": {
+              "count": 4,
+              "raw": 53154,
+              "gzip": 12673,
+              "br": 10698
+            },
+            "img": {
+              "count": 1,
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756
+            },
+            "js": {
+              "count": 7,
+              "raw": 222372,
+              "gzip": 63791,
+              "br": 55316
+            },
+            "other": {
+              "count": 1,
+              "raw": 954,
+              "gzip": 954,
+              "br": 954
+            }
+          },
+          "total": {
+            "count": 14,
+            "raw": 384620,
+            "gzip": 103599,
+            "br": 89283
+          },
+          "list": [
+            {
+              "url": "http://localhost:8001/novatech-solutions/",
+              "type": "html",
+              "raw": 101384,
+              "gzip": 19425,
+              "br": 15559,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.0.6",
+              "type": "css",
+              "raw": 2894,
+              "gzip": 1016,
+              "br": 828,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/twentytwentyfive/style.css?ver=1.1.0",
+              "type": "css",
+              "raw": 2503,
+              "gzip": 1161,
+              "br": 849,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/uploads/2026/10/novatech-hero-architecture.png",
+              "type": "img",
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756,
+              "encoding": null
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+              "type": "js",
+              "raw": 4776,
+              "gzip": 1644,
+              "br": 1477,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+              "type": "js",
+              "raw": 9141,
+              "gzip": 3667,
+              "br": 3341,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.0.6",
+              "type": "js",
+              "raw": 12512,
+              "gzip": 3523,
+              "br": 3172,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.0.6",
+              "type": "js",
+              "raw": 13452,
+              "gzip": 4236,
+              "br": 3724,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/css/novatech.css?ver=1.1.0",
+              "type": "css",
+              "raw": 29303,
+              "gzip": 5647,
+              "br": 4840,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/vendor/swiper/swiper-bundle.min.css?ver=11.2.6",
+              "type": "css",
+              "raw": 18454,
+              "gzip": 4849,
+              "br": 4181,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/js/novatech.js?ver=1.1.0",
+              "type": "js",
+              "raw": 9232,
+              "gzip": 2624,
+              "br": 2209,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/vendor/swiper/swiper-bundle.min.js?ver=11.2.6",
+              "type": "js",
+              "raw": 154008,
+              "gzip": 42928,
+              "br": 37295,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/wp-emoji-release.min.js?ver=6.8.2",
+              "type": "js",
+              "raw": 19251,
+              "gzip": 5169,
+              "br": 4098,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-json/contact-form-7/v1/contact-forms/331/feedback/schema",
+              "type": "other",
+              "raw": 954,
+              "gzip": 954,
+              "br": 954,
+              "encoding": null
+            }
+          ],
+          "failedRequests": [],
+          "status4xx5xx": []
+        },
+        "dom": {
+          "elements": 709,
+          "maxDepth": 13,
+          "htmlBytesDom": 102564,
+          "scriptTags": 11,
+          "inlineScriptTags": 4,
+          "styleTags": 5,
+          "linkedStylesheets": 4
+        },
+        "a11y": {
+          "htmlLang": "en-US",
+          "title": "NovaTech Solutions – NovaTech Solutions",
+          "metaViewport": true,
+          "h1Count": 1,
+          "headingLevelSkips": 0,
+          "landmarks": {
+            "header": 1,
+            "nav": 2,
+            "main": 1,
+            "footer": 1
+          },
+          "skipLink": true,
+          "imagesTotal": 10,
+          "imagesMissingAlt": 0,
+          "imagesEmptyAlt": 0,
+          "buttonsWithoutName": 0,
+          "linksWithoutName": 0,
+          "visibleFormFields": 4,
+          "formFieldsWithoutLabel": 0,
+          "duplicateIds": 0,
+          "ariaControlsBroken": 0,
+          "ariaExpandedTriggers": 10,
+          "positiveTabindex": 0,
+          "liveRegions": 5
+        }
+      },
+      "astro": {
+        "runs": 7,
+        "metrics": {
+          "ttfb": {
+            "median": 14.3,
+            "min": 12.4,
+            "max": 14.8
+          },
+          "fcp": {
+            "median": 164,
+            "min": 160,
+            "max": 180
+          },
+          "lcp": {
+            "median": 168,
+            "min": 160,
+            "max": 180
+          },
+          "cls": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "tbtApprox": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domContentLoaded": {
+            "median": 139,
+            "min": 128.8,
+            "max": 148.1
+          },
+          "load": {
+            "median": 141,
+            "min": 130.8,
+            "max": 150.4
+          },
+          "longTaskCount": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          }
+        },
+        "resources": {
+          "byType": {
+            "html": {
+              "count": 1,
+              "raw": 62140,
+              "gzip": 12742,
+              "br": 10050
+            },
+            "css": {
+              "count": 1,
+              "raw": 37647,
+              "gzip": 7488,
+              "br": 6584
+            },
+            "img": {
+              "count": 1,
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756
+            },
+            "js": {
+              "count": 1,
+              "raw": 91913,
+              "gzip": 28106,
+              "br": 24858
+            }
+          },
+          "total": {
+            "count": 4,
+            "raw": 198456,
+            "gzip": 55092,
+            "br": 48248
+          },
+          "list": [
+            {
+              "url": "http://127.0.0.1:4341/",
+              "type": "html",
+              "raw": 62140,
+              "gzip": 12742,
+              "br": 10050,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://127.0.0.1:4341/_astro/index.DOmElJ1w.css",
+              "type": "css",
+              "raw": 37647,
+              "gzip": 7488,
+              "br": 6584,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://127.0.0.1:4341/images/novatech-hero-architecture.png",
+              "type": "img",
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756,
+              "encoding": null
+            },
+            {
+              "url": "http://127.0.0.1:4341/_astro/index.astro_astro_type_script_index_0_lang.DoGJu6i5.js",
+              "type": "js",
+              "raw": 91913,
+              "gzip": 28106,
+              "br": 24858,
+              "encoding": "gzip"
+            }
+          ],
+          "failedRequests": [],
+          "status4xx5xx": []
+        },
+        "dom": {
+          "elements": 673,
+          "maxDepth": 13,
+          "htmlBytesDom": 63684,
+          "scriptTags": 2,
+          "inlineScriptTags": 1,
+          "styleTags": 0,
+          "linkedStylesheets": 1
+        },
+        "a11y": {
+          "htmlLang": "en-US",
+          "title": "NovaTech Solutions – NovaTech Solutions",
+          "metaViewport": true,
+          "h1Count": 1,
+          "headingLevelSkips": 0,
+          "landmarks": {
+            "header": 1,
+            "nav": 2,
+            "main": 1,
+            "footer": 1
+          },
+          "skipLink": true,
+          "imagesTotal": 10,
+          "imagesMissingAlt": 0,
+          "imagesEmptyAlt": 0,
+          "buttonsWithoutName": 0,
+          "linksWithoutName": 0,
+          "visibleFormFields": 5,
+          "formFieldsWithoutLabel": 0,
+          "duplicateIds": 0,
+          "ariaControlsBroken": 0,
+          "ariaExpandedTriggers": 10,
+          "positiveTabindex": 0,
+          "liveRegions": 1
+        }
+      }
+    },
+    "mobile-375-throttled": {
+      "wordpress": {
+        "runs": 7,
+        "metrics": {
+          "ttfb": {
+            "median": 152,
+            "min": 150.2,
+            "max": 170.9
+          },
+          "fcp": {
+            "median": 960,
+            "min": 940,
+            "max": 1064
+          },
+          "lcp": {
+            "median": 960,
+            "min": 940,
+            "max": 1064
+          },
+          "cls": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "tbtApprox": {
+            "median": 52,
+            "min": 0,
+            "max": 62
+          },
+          "domContentLoaded": {
+            "median": 1064.6,
+            "min": 1038.6,
+            "max": 1165.4
+          },
+          "load": {
+            "median": 1184.9,
+            "min": 1152.1,
+            "max": 1285.6
+          },
+          "longTaskCount": {
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        },
+        "resources": {
+          "byType": {
+            "js": {
+              "count": 8,
+              "raw": 223702,
+              "gzip": 64376,
+              "br": 55807
+            },
+            "html": {
+              "count": 1,
+              "raw": 101384,
+              "gzip": 19425,
+              "br": 15559
+            },
+            "css": {
+              "count": 4,
+              "raw": 53154,
+              "gzip": 12673,
+              "br": 10698
+            },
+            "img": {
+              "count": 1,
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756
+            },
+            "other": {
+              "count": 1,
+              "raw": 954,
+              "gzip": 954,
+              "br": 954
+            }
+          },
+          "total": {
+            "count": 15,
+            "raw": 385950,
+            "gzip": 104184,
+            "br": 89774
+          },
+          "list": [
+            {
+              "url": "blob:http://localhost:8001/0ec756f1-076c-4684-872b-ab47afbe73b5",
+              "type": "js",
+              "raw": 1330,
+              "gzip": 585,
+              "br": 491,
+              "encoding": null
+            },
+            {
+              "url": "http://localhost:8001/novatech-solutions/",
+              "type": "html",
+              "raw": 101384,
+              "gzip": 19425,
+              "br": 15559,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.0.6",
+              "type": "css",
+              "raw": 2894,
+              "gzip": 1016,
+              "br": 828,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/twentytwentyfive/style.css?ver=1.1.0",
+              "type": "css",
+              "raw": 2503,
+              "gzip": 1161,
+              "br": 849,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+              "type": "js",
+              "raw": 4776,
+              "gzip": 1644,
+              "br": 1477,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/vendor/swiper/swiper-bundle.min.css?ver=11.2.6",
+              "type": "css",
+              "raw": 18454,
+              "gzip": 4849,
+              "br": 4181,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/css/novatech.css?ver=1.1.0",
+              "type": "css",
+              "raw": 29303,
+              "gzip": 5647,
+              "br": 4840,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/uploads/2026/10/novatech-hero-architecture.png",
+              "type": "img",
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756,
+              "encoding": null
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+              "type": "js",
+              "raw": 9141,
+              "gzip": 3667,
+              "br": 3341,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.0.6",
+              "type": "js",
+              "raw": 12512,
+              "gzip": 3523,
+              "br": 3172,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/js/novatech.js?ver=1.1.0",
+              "type": "js",
+              "raw": 9232,
+              "gzip": 2624,
+              "br": 2209,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.0.6",
+              "type": "js",
+              "raw": 13452,
+              "gzip": 4236,
+              "br": 3724,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-content/themes/ai-hub-theme/assets/vendor/swiper/swiper-bundle.min.js?ver=11.2.6",
+              "type": "js",
+              "raw": 154008,
+              "gzip": 42928,
+              "br": 37295,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://localhost:8001/wp-json/contact-form-7/v1/contact-forms/331/feedback/schema",
+              "type": "other",
+              "raw": 954,
+              "gzip": 954,
+              "br": 954,
+              "encoding": null
+            },
+            {
+              "url": "http://localhost:8001/wp-includes/js/wp-emoji-release.min.js?ver=6.8.2",
+              "type": "js",
+              "raw": 19251,
+              "gzip": 5169,
+              "br": 4098,
+              "encoding": "gzip"
+            }
+          ],
+          "failedRequests": [],
+          "status4xx5xx": []
+        },
+        "dom": {
+          "elements": 711,
+          "maxDepth": 13,
+          "htmlBytesDom": 102760,
+          "scriptTags": 11,
+          "inlineScriptTags": 4,
+          "styleTags": 5,
+          "linkedStylesheets": 4
+        },
+        "a11y": {
+          "htmlLang": "en-US",
+          "title": "NovaTech Solutions – NovaTech Solutions",
+          "metaViewport": true,
+          "h1Count": 1,
+          "headingLevelSkips": 0,
+          "landmarks": {
+            "header": 1,
+            "nav": 2,
+            "main": 1,
+            "footer": 1
+          },
+          "skipLink": true,
+          "imagesTotal": 10,
+          "imagesMissingAlt": 0,
+          "imagesEmptyAlt": 0,
+          "buttonsWithoutName": 0,
+          "linksWithoutName": 0,
+          "visibleFormFields": 4,
+          "formFieldsWithoutLabel": 0,
+          "duplicateIds": 0,
+          "ariaControlsBroken": 0,
+          "ariaExpandedTriggers": 10,
+          "positiveTabindex": 0,
+          "liveRegions": 5
+        }
+      },
+      "astro": {
+        "runs": 7,
+        "metrics": {
+          "ttfb": {
+            "median": 12.7,
+            "min": 11.2,
+            "max": 13.2
+          },
+          "fcp": {
+            "median": 920,
+            "min": 876,
+            "max": 948
+          },
+          "lcp": {
+            "median": 920,
+            "min": 876,
+            "max": 948
+          },
+          "cls": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "tbtApprox": {
+            "median": 0,
+            "min": 0,
+            "max": 0
+          },
+          "domContentLoaded": {
+            "median": 965.1,
+            "min": 923.3,
+            "max": 992.5
+          },
+          "load": {
+            "median": 977.7,
+            "min": 935.7,
+            "max": 1005.7
+          },
+          "longTaskCount": {
+            "median": 1,
+            "min": 1,
+            "max": 1
+          }
+        },
+        "resources": {
+          "byType": {
+            "html": {
+              "count": 1,
+              "raw": 62140,
+              "gzip": 12742,
+              "br": 10050
+            },
+            "css": {
+              "count": 1,
+              "raw": 37647,
+              "gzip": 7488,
+              "br": 6584
+            },
+            "img": {
+              "count": 1,
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756
+            },
+            "js": {
+              "count": 1,
+              "raw": 91913,
+              "gzip": 28106,
+              "br": 24858
+            }
+          },
+          "total": {
+            "count": 4,
+            "raw": 198456,
+            "gzip": 55092,
+            "br": 48248
+          },
+          "list": [
+            {
+              "url": "http://127.0.0.1:4341/",
+              "type": "html",
+              "raw": 62140,
+              "gzip": 12742,
+              "br": 10050,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://127.0.0.1:4341/_astro/index.DOmElJ1w.css",
+              "type": "css",
+              "raw": 37647,
+              "gzip": 7488,
+              "br": 6584,
+              "encoding": "gzip"
+            },
+            {
+              "url": "http://127.0.0.1:4341/images/novatech-hero-architecture.png",
+              "type": "img",
+              "raw": 6756,
+              "gzip": 6756,
+              "br": 6756,
+              "encoding": null
+            },
+            {
+              "url": "http://127.0.0.1:4341/_astro/index.astro_astro_type_script_index_0_lang.DoGJu6i5.js",
+              "type": "js",
+              "raw": 91913,
+              "gzip": 28106,
+              "br": 24858,
+              "encoding": "gzip"
+            }
+          ],
+          "failedRequests": [],
+          "status4xx5xx": []
+        },
+        "dom": {
+          "elements": 675,
+          "maxDepth": 13,
+          "htmlBytesDom": 63772,
+          "scriptTags": 2,
+          "inlineScriptTags": 1,
+          "styleTags": 0,
+          "linkedStylesheets": 1
+        },
+        "a11y": {
+          "htmlLang": "en-US",
+          "title": "NovaTech Solutions – NovaTech Solutions",
+          "metaViewport": true,
+          "h1Count": 1,
+          "headingLevelSkips": 0,
+          "landmarks": {
+            "header": 1,
+            "nav": 2,
+            "main": 1,
+            "footer": 1
+          },
+          "skipLink": true,
+          "imagesTotal": 10,
+          "imagesMissingAlt": 0,
+          "imagesEmptyAlt": 0,
+          "buttonsWithoutName": 0,
+          "linksWithoutName": 0,
+          "visibleFormFields": 5,
+          "formFieldsWithoutLabel": 0,
+          "duplicateIds": 0,
+          "ariaControlsBroken": 0,
+          "ariaExpandedTriggers": 10,
+          "positiveTabindex": 0,
+          "liveRegions": 1
+        }
+      }
+    }
+  }
+}
